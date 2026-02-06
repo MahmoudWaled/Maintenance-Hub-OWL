@@ -1,12 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
 <templates xml:space="preserve">
-    <t t-name="maintenance_hub.MaintenanceRoot"  >
-            <div class="container mt-4">
-                <div class="alert alert-info">
-                    <h1>
-                        <t t-esc="state.title"/>
-                    </h1>
-                  
-                </div>
+    <t t-name="maintenance_hub.MaintenanceRoot">
+        <div class="maintenance-hub-root">
+            <div class="row g-3">
+                <t t-foreach="stages" t-as="stage" t-key="stage.id">
+                    <div class="col-md-3">
+                        <div class="stage-column">
+                            <div class="stage-header">
+                                <h6 class="stage-title">
+                                    <t t-esc="stage.name" />
+                                    <span class="stage-count">
+                                        <t t-esc="getRequestsByStage(stage.id).length" />
+                                    </span>
+                                </h6>
+                            </div>
+                            <div t-on-dragover.prevent="onDragOver" t-on-drop="(ev) => this.onDrop(stage.id, ev)" class="stage-body">
+                                <t t-foreach="getRequestsByStage(stage.id)" t-as="request" t-key="request.id">
+                                    <MaintenanceCard request="request" />
+                                </t>
+                                <t t-if="getRequestsByStage(stage.id).length == 0">
+                                    <div class="empty-state">
+                                        <i class="fa fa-inbox" />
+                                        <div class="empty-state-text">No Requests</div>
+                                    </div>
+                                </t>
+                            </div>
+                        </div>
+                    </div>
+                </t>
             </div>
+        </div>
     </t>
 </templates>

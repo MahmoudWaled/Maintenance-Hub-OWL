@@ -10,10 +10,10 @@
     ],
     'assets': {
         'web.assets_backend': [
-            'maintenance_hub/static/src/components/*.js',
-            'maintenance_hub/static/src/components/*.xml',
-            'maintenance_hub/static/src/components/card/*.js'
-            'maintenance_hub/static/src/components/card/*.xml'
+            'maintenance_hub/static/src/**/*.js',
+            'maintenance_hub/static/src/**/*.xml',
+            'maintenance_hub/static/src/**/*.css',
+
         ],
     },
     'installable': True,

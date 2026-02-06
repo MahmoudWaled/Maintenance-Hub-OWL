@@ -11,11 +11,14 @@ class MaintenanceRequest(models.Model):
                 'id',
                 'name',
                 'stage_id',
-                'technician_user_id',
+                'user_id',
+                'create_uid',
                 'equipment_id',
                 'priority',
                 'kanban_state',
                 'request_date',
+                'schedule_date',
+                'schedule_end',
                 'description'
             ])
         return results

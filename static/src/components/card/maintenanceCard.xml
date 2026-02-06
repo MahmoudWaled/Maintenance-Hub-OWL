@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates xml:space="preserve">
+    <t t-name="maintenance_hub.MaintenanceCard" owl="1">
+        <div t-attf-class="maintenance-card priority-#{props.request.priority == '3' ? 'high' : props.request.priority == '2' ? 'normal' : 'low'}" t-on-dragstart="onDragStart" draggable="true">
+            <div class="card-header-row">
+                <h6 class="card-title">
+                    <t t-esc="props.request.name" />
+                </h6>
+                <div class="card-badges">
+                    <span t-attf-class="status-indicator status-#{props.request.kanban_state == 'done' ? 'done' : props.request.kanban_state == 'blocked' ? 'blocked' : 'normal'}" t-att-title="props.request.kanban_state" />
+                    <span t-attf-class="priority-badge #{props.request.priority == '3' ? 'high' : props.request.priority == '2' ? 'normal' : 'low'}">
+                        <t t-if="props.request.priority == '3'">High</t>
+                        <t t-if="props.request.priority == '2'">Normal</t>
+                        <t t-if="props.request.priority == '1'">Low</t>
+                    </span>
+                </div>
+            </div>
+            <div class="card-info">
+                <div t-if="props.request.equipment_id" class="info-item">
+                    <i class="fa fa-cube" />
+                    <t t-esc="props.request.equipment_id[1]" />
+                </div>
+                <div t-if="props.request.create_uid" class="info-item">
+                    <i class="fa fa-user-o" />
+                    Requested by:
+                    <span class="info-value">
+                        <t t-esc="props.request.create_uid[1]" />
+                    </span>
+                </div>
+                <div t-if="props.request.user_id" class="info-item">
+                    <i class="fa fa-wrench" />
+                    Assigned to:
+                    <span class="info-value">
+                        <t t-esc="props.request.user_id[1]" />
+                    </span>
+                </div>
+            </div>
+            <div class="card-dates">
+                <div class="date-item">
+                    <span class="date-label">Start</span>
+                    <span class="date-value">
+                        <t t-esc="formatDate(props.request.schedule_date)" />
+                    </span>
+                </div>
+                <i class="fa fa-long-arrow-right date-separator" />
+                <div class="date-item" style="text-align: right;">
+                    <span class="date-label">End</span>
+                    <span class="date-value">
+                        <t t-esc="formatDate(props.request.schedule_end)" />
+                    </span>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>
