@@ -7,6 +7,8 @@
     'depends': ['base', 'web', 'maintenance'],
     'data': [
         'views/maintenance_menus.xml',
+        'data/users_demo.xml',
+        'data/maintenance_demo.xml',
     ],
     'assets': {
         'web.assets_backend': [

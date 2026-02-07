@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data for maintenance equipment -->
+    <data noupdate="1">
+        <record id="equipment_category_it" model="maintenance.equipment.category">
+            <field name="name">IT Equipment</field>
+        </record>
+
+        <record id="equipment_category_machines" model="maintenance.equipment.category">
+            <field name="name">Machines</field>
+        </record>
+
+        <record id="equipment_category_office" model="maintenance.equipment.category">
+            <field name="name">Office</field>
+        </record>
+
+        <record id="equipment_printer" model="maintenance.equipment">
+            <field name="name">HP Printer</field>
+        </record>
+
+        <record id="equipment_laptop" model="maintenance.equipment">
+            <field name="name">Dell Laptop</field>
+        </record>
+
+        <record id="equipment_router" model="maintenance.equipment">
+            <field name="name">Cisco Router</field>
+        </record>
+
+        <record id="equipment_cnc_machine" model="maintenance.equipment">
+            <field name="name">CNC Machine</field>
+        </record>
+
+        <record id="equipment_conveyor" model="maintenance.equipment">
+            <field name="name">Conveyor Belt</field>
+        </record>
+
+        <record id="equipment_generator" model="maintenance.equipment">
+            <field name="name">Generator</field>
+        </record>
+
+        <record id="equipment_ac" model="maintenance.equipment">
+            <field name="name">AC Unit</field>
+        </record>
+
+        <record id="equipment_coffee" model="maintenance.equipment">
+            <field name="name">Coffee Machine</field>
+        </record>
+    </data>
+</odoo>

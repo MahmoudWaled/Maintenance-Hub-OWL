@@ -38,16 +38,24 @@ export class MaintenanceRoot extends Component {
 
     openNewRequestModal(){
         this.dialog.add(MaintenanceModal,{
+            request: null,
             onSave: async (requestData)=> await this.createRequest(requestData)
         })
+    }
+
+    openEditModal(requestToEdit) {
+        this.dialog.add(MaintenanceModal, {
+            request: requestToEdit,
+            onSave: async (data) => await this.updateRequest(data)
+        });
     }
 
     async createRequest(data){
         try {
             await this.orm.create('maintenance.request',[{
             name:data.name,
-            user_id:data.user_id,
-            equipment_id:data.equipment_id,
+            user_id: data.user_id ? parseInt(data.user_id) : false,
+            equipment_id: data.equipment_id ? parseInt(data.equipment_id) : false,
             priority:data.priority,
             schedule_date:data.schedule_date,
             schedule_end:data.schedule_end,
@@ -84,6 +92,31 @@ export class MaintenanceRoot extends Component {
             this.notification.add('Failed to delete request. Please try again.',{type:'danger', title: "Database Error"})
         }
         
+    }
+
+    async updateRequest(updatedData) {
+
+        try {
+            await this.orm.write("maintenance.request", [updatedData.id], {
+            name: updatedData.name,
+            description: updatedData.description,
+            priority: updatedData.priority,
+            user_id: updatedData.user_id ? parseInt(updatedData.user_id) : false,
+            equipment_id: updatedData.equipment_id ? parseInt(updatedData.equipment_id) : false,
+            schedule_date:updatedData.schedule_date,
+            schedule_end:updatedData.schedule_end,
+        });
+        this.fetchPortalData();
+        this.notification.add("Request Updated Successfully", { type: "success" });
+        } catch (error) {
+            console.error("Error updating request:", error);
+            this.notification.ass("Failed to update request. Please try again.",{
+                type:"danger",
+                title: "Database Error"
+            })
+        }
+
+       
     }
 
     onDragOver(ev) {

@@ -9,7 +9,8 @@ export class MaintenanceCard extends Component{
 
     static props = {
         request:Object,
-        onDelete:Function
+        onDelete:Function,
+        onEdit:Function
     };
 
     setup(){
@@ -31,5 +32,8 @@ export class MaintenanceCard extends Component{
         confirm: () => this.props.onDelete(this.props.request.id),
         cancel: () => {},
     });
-}
+    }
+    onCardClick() {
+        this.props.onEdit(this.props.request);
+    }
 }

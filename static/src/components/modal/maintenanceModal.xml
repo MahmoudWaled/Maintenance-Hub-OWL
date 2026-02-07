@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <t t-name="maintenance_hub.MaintenanceModal" owl="1">
-    <Dialog title="'New Maintenance Request'" size="'md'">
+    <Dialog title="props.request ? 'Edit Maintenance Request' : 'New Maintenance Request'" size="'md'">
         <div class="modal-body p-4 bg-100">
             <div class="mb-3">
                 <label class="form-label fw-bold text-dark small">

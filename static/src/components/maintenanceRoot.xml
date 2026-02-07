@@ -31,7 +31,7 @@
                             </div>
                             <div t-on-dragover.prevent="onDragOver" t-on-drop="(ev) => this.onDrop(stage.id, ev)" class="stage-body">
                                 <t t-foreach="getRequestsByStage(stage.id)" t-as="request" t-key="request.id">
-                                    <MaintenanceCard request="request" onDelete="(id)=> this.deleteRequest(id)" />
+                                    <MaintenanceCard request="request" onDelete="(id)=> this.deleteRequest(id)" onEdit.bind="openEditModal" />
                                 </t>
                                 <t t-if="getRequestsByStage(stage.id).length == 0">
                                     <div class="empty-state">

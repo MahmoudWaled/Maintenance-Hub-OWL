@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Demo data for users -->
+    <data noupdate="1">
+        <record id="user_maintenance_manager" model="res.users">
+            <field name="name">Maged Manager</field>
+            <field name="login">maged@demo.com</field>
+            <field name="password">maged</field>
+            <field name="email">maged@demo.com</field>
+        </record>
+
+        <record id="user_maintenance_tech1" model="res.users">
+            <field name="name">Tarek Technician</field>
+            <field name="login">tarek@demo.com</field>
+            <field name="password">tarek</field>
+            <field name="email">tarek@demo.com</field>
+        </record>
+
+        <record id="user_maintenance_tech2" model="res.users">
+            <field name="name">Salma Engineer</field>
+            <field name="login">salma@demo.com</field>
+            <field name="password">salma</field>
+            <field name="email">salma@demo.com</field>
+        </record>
+    </data>
+</odoo>

@@ -10,13 +10,14 @@ export class MaintenanceModal extends Component{
     static components = { Dialog };
     static props = {
         onSave:Function,
-        close:Function
+        close:Function,
+        request: { type: Object, optional: true },
     };
 
     setup(){
         this.orm = useService('orm')
-        this.state = useState({
-        requestData:{
+        const initialData = this.props.request || {
+            id: null,
             name:'',
             user_id:'',
             equipment_id:'',
@@ -24,10 +25,22 @@ export class MaintenanceModal extends Component{
             schedule_date:'',
             schedule_end:'',
             description:'',
-        },
+        };
+        
+        const processedData = {
+            ...initialData,
+            priority: String(initialData.priority || "1"),
+            user_id: Array.isArray(initialData.user_id) ? initialData.user_id[0] : (initialData.user_id || ''),
+            equipment_id: Array.isArray(initialData.equipment_id) ? initialData.equipment_id[0] : (initialData.equipment_id || ''),
+            schedule_date: initialData.schedule_date ? initialData.schedule_date.split(' ')[0] : '',
+            schedule_end: initialData.schedule_end ? initialData.schedule_end.split(' ')[0] : '',
+        };
+        
+        this.state = useState({
+        requestData: processedData,
         nameIsEmpty:false,
         users:[],
-        equipments:[]
+        equipments:[],
         });
 
         onWillStart(async ()=>{
