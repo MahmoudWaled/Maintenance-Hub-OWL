@@ -1,0 +1,11 @@
+/* Priority box to match input height precisely */
+.priority-box-wrapper {
+    height: 31px; 
+}
+
+.priority-box-wrapper i {
+    font-size: 0.9rem;
+}
+
+
+

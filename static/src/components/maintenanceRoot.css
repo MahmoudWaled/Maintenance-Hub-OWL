@@ -9,7 +9,7 @@
 .stage-column {
     display: flex;
     flex-direction: column;
-    background: #ebedef; /* Soft grey background */
+    background: #ebedef; 
     border-radius: 12px;
     height: calc(100vh - 8rem);
     max-height: calc(100vh - 8rem);

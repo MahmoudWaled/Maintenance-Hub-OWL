@@ -2,8 +2,14 @@
 <templates xml:space="preserve">
     <t t-name="maintenance_hub.MaintenanceRoot">
         <div class="maintenance-hub-root">
-            <div class="d-flex justify-content-between align-items-center mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4 ">
                 <h2 class="text-primary fw-bold m-0">Maintenance Hub</h2>
+                <div class="input-group w-50 rounded-pill ">
+                    <span class="input-group-text bg-white border-end-0 rounded-start-pill ">
+                        <i class="fa fa-search text-muted" />
+                    </span>
+                    <input t-model="state.searchTerm" type="text" class="form-control border-start-0 rounded-end-pill bg-white" placeholder="Search..." />
+                </div>
                 <div class="d-flex gap-2">
                     <button t-on-click="openNewRequestModal" class="btn btn-primary shadow-sm rounded-pill px-4">
                         <i class="fa fa-plus me-2" />
@@ -25,7 +31,7 @@
                             </div>
                             <div t-on-dragover.prevent="onDragOver" t-on-drop="(ev) => this.onDrop(stage.id, ev)" class="stage-body">
                                 <t t-foreach="getRequestsByStage(stage.id)" t-as="request" t-key="request.id">
-                                    <MaintenanceCard request="request" />
+                                    <MaintenanceCard request="request" onDelete="(id)=> this.deleteRequest(id)" />
                                 </t>
                                 <t t-if="getRequestsByStage(stage.id).length == 0">
                                     <div class="empty-state">

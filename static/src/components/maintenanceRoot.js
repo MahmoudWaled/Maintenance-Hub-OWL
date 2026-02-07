@@ -13,6 +13,7 @@ export class MaintenanceRoot extends Component {
     setup(){
         this.state = useState({
             requests:[],
+            searchTerm:'',
         });
 
         this.orm = useService('orm');
@@ -26,7 +27,8 @@ export class MaintenanceRoot extends Component {
             { id: 2, name: 'In Progress', text_class: 'text-bg-warning' },
             { id: 3, name: 'Repaired', text_class: 'text-bg-success' },
             { id: 4, name: 'Scrap', text_class: 'text-bg-danger' }
-        ]
+        ];
+        
     };
 
     async fetchPortalData(){
@@ -65,8 +67,23 @@ export class MaintenanceRoot extends Component {
     }
 
     getRequestsByStage(stageId){
-        const results= this.state.requests.filter(req=>req.stage_id[0] == stageId);
-        return results;
+        return this.state.requests.filter(req=>{
+            const inStage= req.stage_id[0] == stageId;
+            const matchesSearch= req.name.toLowerCase().includes(this.state.searchTerm.toLowerCase());
+            return inStage && matchesSearch;
+        });
+    }
+
+     async deleteRequest(requestId){
+        try {
+            await this.orm.unlink('maintenance.request',[requestId]);
+            this.state.requests = this.state.requests.filter(req=>req.id !== requestId);
+            this.notification.add('Request Deleted Successfully',{type:'success'})
+        } catch (error) {
+            console.error("Error deleting request:", error);
+            this.notification.add('Failed to delete request. Please try again.',{type:'danger', title: "Database Error"})
+        }
+        
     }
 
     onDragOver(ev) {
