@@ -24,7 +24,7 @@ This module implements a reactive, component-based frontend within the Odoo back
 
 1. Clone the repository into your Odoo addons path:
    ```bash
-   git clone [https://github.com/your-username/maintenance_hub.git](https://github.com/your-username/maintenance_hub.git)
+   git clone https://github.com/MahmoudWaled/Maintenance-Hub-OWL.git
    ```
 2. Add the module path to odoo.conf.
 3. Restart Odoo.
