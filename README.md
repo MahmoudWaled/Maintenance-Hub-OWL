@@ -30,12 +30,21 @@ This module implements a reactive, component-based frontend within the Odoo back
 3. Restart Odoo.
 4. Install Maintenance Hub from the Apps menu.
 
-## Usage
-
-Navigate to Maintenance app > Maintenance Hub. The dashboard loads active requests. Users can drag cards to change stages, use the search bar, or toggle "My Tasks" to filter assignments.
 
 ## Dependencies
 
 base
 web
 maintenance
+
+## Screenshots from the app
+
+<img width="1920" height="875" alt="Screenshot_20260207_183630" src="https://github.com/user-attachments/assets/e3298d51-5c74-4038-a5e5-8c5a9631fa51" />
+<img width="1920" height="877" alt="Screenshot_20260207_183820" src="https://github.com/user-attachments/assets/e7f0e16b-546d-44ec-a435-d91c3d63ab64" />
+<img width="1920" height="876" alt="Screenshot_20260207_183944" src="https://github.com/user-attachments/assets/7b8dd05e-6a13-4f2c-abbe-7d5121df285e" />
+<img width="1920" height="816" alt="Screenshot_20260207_184532" src="https://github.com/user-attachments/assets/c458a014-81c8-4807-843f-2ac2d5f2e9cd" />
+<img width="1920" height="810" alt="Screenshot_20260207_184603" src="https://github.com/user-attachments/assets/a68d6716-d920-4967-a4e4-99c2b806b596" />
+<img width="1920" height="809" alt="Screenshot_20260207_184623" src="https://github.com/user-attachments/assets/25f55a70-383f-47aa-a4bd-5168c747f251" />
+<img width="1920" height="816" alt="Screenshot_20260207_184636" src="https://github.com/user-attachments/assets/4370c498-4e40-4d9d-9946-d4da1a885cc5" />
+
+
