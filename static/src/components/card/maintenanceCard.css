@@ -1,139 +1,83 @@
-/* *** Maintenance Card *** */
-.maintenance-card {
-    background: white;
-    border-radius: 6px;
-    padding: 0.875rem;
-    margin-bottom: 0.75rem;
-    border-left: 3px solid #dee2e6;
-    transition: all 0.2s ease;
-    cursor: pointer;
-}
-
-.maintenance-card:hover {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
-}
-
-/* Priority Colors */
-.maintenance-card.priority-high {
-    border-left-color: #dc3545;
-}
-
-.maintenance-card.priority-normal {
-    border-left-color: #ffc107;
-}
-
-.maintenance-card.priority-low {
-    border-left-color: #28a745;
-}
-
-/* *** Card Header *** */
-.card-header-row {
+/* --- Maintenance Card Container --- */
+.maintenance-card.compact-card {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.75rem;
+    min-height: 115px;
+    padding: 8px 10px !important;
+    margin-bottom: 8px !important;
+    border-radius: 4px;
+    background-color: #fff;
+    transition: transform 0.2s ease;
+    cursor: grab;
 }
 
-.card-title {
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #2c3e50;
-    margin: 0;
-    flex: 1;
-    line-height: 1.3;
+.maintenance-card.compact-card:hover {
+    transform: translateY(-2px);
 }
 
-.card-badges {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-left: 0.5rem;
+.maintenance-card.compact-card .card-title {
+    line-height: 1.2;
+    color: #1a252f !important;
+    min-height: 1.2em;
 }
+
+/* --- Priority Theme Management --- */
+.maintenance-card.priority-3 { 
+    border-left: 4px solid #dc3545 !important; 
+}
+.maintenance-card.priority-2 { 
+    border-left: 4px solid #f59e0b !important; 
+}
+.maintenance-card.priority-1 { 
+    border-left: 4px solid #22c55e !important; 
+}
+
+/* --- Badges & Status Indicators --- */
+.badge-priority {
+    font-size: 0.65rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.bg-priority-3 { background-color: #dc3545; color: #fff; }
+.bg-priority-2 { background-color: #f59e0b; color: #fff; }
+.bg-priority-1 { background-color: #22c55e; color: #fff; }
 
 .status-indicator {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    flex-shrink: 0;
+    display: inline-block;
 }
 
-.status-done { background: #28a745; }
-.status-blocked { background: #dc3545; }
-.status-normal { background: #6c757d; }
-
-.priority-badge {
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-}
-
-.priority-badge.high { color: #dc3545; }
-.priority-badge.normal { color: #ffc107; }
-.priority-badge.low { color: #28a745; }
-
-/* *** Card Info *** */
-.card-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    font-size: 0.8rem;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    color: #6c757d;
-}
-
-.info-item i {
-    width: 16px;
-    margin-right: 0.4rem;
-    opacity: 0.7;
-}
-
-.info-label {
-    color: #6c757d;
-}
-
-.info-value {
-    color: #2c3e50;
-    font-weight: 500;
-    margin-left: 0.25rem;
-}
-
-/* *** Card Dates *** */
-.card-dates {
-    margin-top: 0.75rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid #e9ecef;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* --- Icons & Text Formatting --- */
+.maintenance-card i {
+    width: 14px;
+    text-align: center;
     font-size: 0.75rem;
 }
 
-.date-item {
-    display: flex;
-    flex-direction: column;
+.info-icon-user { color: #6366f1; } 
+.info-icon-req { color: #8b5cf6; }
+.info-icon-equip { color: #0ea5e9; }
+
+.text-muted.small {
+    font-size: 0.7rem;
 }
 
-.date-label {
-    color: #6c757d;
-    text-transform: uppercase;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.3px;
-    margin-bottom: 0.15rem;
+/* --- Layout Stability --- */
+.info-item, .date-value {
+    min-height: 1em;
 }
 
-.date-value {
-    color: #2c3e50;
-    font-weight: 500;
+/* --- Stage Scrollbar Styling --- */
+.stage-body::-webkit-scrollbar {
+    width: 4px;
 }
 
-.date-separator {
-    color: #dee2e6;
-    font-size: 1rem;
+.stage-body::-webkit-scrollbar-thumb {
+    background: #dee2e6;
+    border-radius: 10px;
 }

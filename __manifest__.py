@@ -13,7 +13,6 @@
             'maintenance_hub/static/src/**/*.js',
             'maintenance_hub/static/src/**/*.xml',
             'maintenance_hub/static/src/**/*.css',
-
         ],
     },
     'installable': True,

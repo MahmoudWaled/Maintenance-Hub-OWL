@@ -1,0 +1,80 @@
+/* --- Root & Layout --- */
+.maintenance-hub-root {
+    background: #f8f9fa;
+    min-height: 100vh;
+    padding: 1.5rem;
+}
+
+/* --- Updated Stage Column --- */
+.stage-column {
+    display: flex;
+    flex-direction: column;
+    background: #ebedef; /* Soft grey background */
+    border-radius: 12px;
+    height: calc(100vh - 8rem);
+    max-height: calc(100vh - 8rem);
+    border: none;
+}
+
+.stage-header {
+    padding: 1.25rem 1rem;
+    flex-shrink: 0;
+}
+
+.stage-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #4a5568;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.stage-count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 2px 10px;
+    background: #cbd5e0;
+    color: #2d3748;
+    border-radius: 20px;
+}
+
+.stage-body {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 0.5rem 0.75rem;
+    padding-bottom: 5rem;
+    min-height: 0;
+}
+
+/* --- Empty State --- */
+.empty-state {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: #adb5bd;
+}
+
+.empty-state i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+
+/* --- Scrollbar --- */
+.stage-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.stage-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.stage-body::-webkit-scrollbar-thumb {
+    background: #cbd5e0;
+    border-radius: 10px;
+}
+
+.stage-body::-webkit-scrollbar-thumb:hover {
+    background: #a0aec0;
+}

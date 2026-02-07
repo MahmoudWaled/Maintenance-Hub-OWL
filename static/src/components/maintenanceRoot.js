@@ -3,11 +3,12 @@ import { Component, onWillStart, useState } from '@odoo/owl';
 import {registry } from '@web/core/registry';
 import { MaintenanceCard } from './card/maintenanceCard';
 import {useService} from '@web/core/utils/hooks';
+import { MaintenanceModal } from './modal/maintenanceModal';
 
 export class MaintenanceRoot extends Component {
 
     static template = 'maintenance_hub.MaintenanceRoot';
-    static components = {MaintenanceCard};
+    static components = {MaintenanceCard ,MaintenanceModal};
     
     setup(){
         this.state = useState({
@@ -15,6 +16,9 @@ export class MaintenanceRoot extends Component {
         });
 
         this.orm = useService('orm');
+        this.dialog = useService('dialog');
+        this.notification = useService('notification');
+
         onWillStart(async()=>await this.fetchPortalData());
 
         this.stages=[
@@ -30,6 +34,35 @@ export class MaintenanceRoot extends Component {
         this.state.requests = result;
     };
 
+    openNewRequestModal(){
+        this.dialog.add(MaintenanceModal,{
+            onSave: async (requestData)=> await this.createRequest(requestData)
+        })
+    }
+
+    async createRequest(data){
+        try {
+            await this.orm.create('maintenance.request',[{
+            name:data.name,
+            user_id:data.user_id,
+            equipment_id:data.equipment_id,
+            priority:data.priority,
+            schedule_date:data.schedule_date,
+            schedule_end:data.schedule_end,
+            description:data.description,
+        }]);
+        this.fetchPortalData();
+        this.notification.add("Request Created Successfully", { type: "success" });
+        }
+        catch (error) {
+            console.error("Error creating request:", error);
+            this.notification.ass("Failed to create request. Please try again.",{
+                type:"danger",
+                title: "Database Error"
+            })
+        }
+        
+    }
 
     getRequestsByStage(stageId){
         const results= this.state.requests.filter(req=>req.stage_id[0] == stageId);

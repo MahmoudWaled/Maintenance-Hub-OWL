@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<templates>
+    <t t-name="maintenance_hub.MaintenanceModal" owl="1">
+        <Dialog title="'New Request'">
+            <div class="modal-body p-4">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-floating mb-3">
+                            <input t-attf-class="form-control #{state.nameIsEmpty ? 'is-invalid' : ''}" t-model="state.requestData.name" t-on-input="clearNameError" id="m_requestName" type="text" placeholder="Name" />
+                            <label for="m_requestName" class="form-label fw-bold">
+                                Request Title
+                                <span class="text-danger">*</span>
+                            </label>
+                            <span t-if="state.nameIsEmpty" class="invalid-feedback">Please enter a valid request name.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <div class="input-group" style="height: 58px;">
+                                <label class="input-group-text bg-light" for="m_responsible">
+                                    <i class="fa fa-user text-muted" />
+                                </label>
+                                <select t-model="state.requestData.user_id" id="m_responsible" class="form-select">
+                                    <option selected="selected" value="">Responsible...</option>
+                                    <t t-foreach="state.users" t-as="user" t-key="user.id">
+                                        <option t-att-value="user.id">
+                                            <t t-esc="user.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <div class="input-group" style="height: 58px;">
+                                <label class="input-group-text bg-light" for="m_equipment">
+                                    <i class="fa fa-cube text-muted" />
+                                </label>
+                                <select t-model="state.requestData.equipment_id" id="m_equipment" class="form-select">
+                                    <option selected="selected" value="">Equipment...</option>
+                                    <t t-foreach="state.equipments" t-as="equipment" t-key="equipment.id">
+                                        <option t-att-value="equipment.id">
+                                            <t t-esc="equipment.name" />
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="mb-3 p-3 border rounded bg-light d-flex justify-content-between align-items-center">
+                            <label class="form-label fw-bold text-muted small mb-0">
+                                <i class="fa fa-signal me-2" />
+                                Priority Level
+                            </label>
+                            <div class="d-flex align-items-center gap-3">
+                                <div class="stars-container">
+                                    <t t-foreach="['1', '2', '3']" t-as="star" t-key="star">
+                                        <i t-attf-class="fa cursor-pointer mx-1 #{state.requestData.priority >= star ? 'fa-star text-warning' : 'fa-star-o text-muted'}" t-on-click="() => this.setPriority(star)" style="font-size: 1.3rem; cursor: pointer;" />
+                                    </t>
+                                </div>
+                                <span class="badge rounded-pill bg-white text-dark border px-3 py-2">
+                                    <t t-if="state.requestData.priority == '1'">Low</t>
+                                    <t t-if="state.requestData.priority == '2'">Normal</t>
+                                    <t t-if="state.priority == '3' or state.requestData.priority == '3'">High</t>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input t-model="state.requestData.schedule_date" id="m_scheduleDate" type="date" class="form-control" placeholder="Schedule Date" />
+                            <label for="m_scheduleDate" class="form-label text-primary fw-bold">Start Date</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-floating mb-3">
+                            <input t-model="state.requestData.schedule_end" id="m_scheduleEnd" type="date" class="form-control" placeholder="Schedule End" />
+                            <label for="m_scheduleEnd" class="form-label text-danger fw-bold">End Date</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-floating">
+                            <textarea t-model="state.requestData.description" id="m_description" class="form-control" placeholder="Description" style="height: 100px" />
+                            <label for="m_description" class="form-label">Internal Notes / Description</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <t t-set-slot="footer">
+                <div class="w-100 d-flex gap-3 p-2">
+                    <button t-on-click="props.close" class="btn btn-outline-secondary flex-grow-1 py-2 fw-bold">Cancel</button>
+                    <button t-on-click="save" class="btn btn-primary flex-grow-1 py-2 fw-bold shadow-sm">Save Request</button>
+                </div>
+            </t>
+        </Dialog>
+    </t>
+</templates>
